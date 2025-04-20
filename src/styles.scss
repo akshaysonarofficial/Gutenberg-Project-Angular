@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'MontserratRegular';
+    src: url('./assets/fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --primary-color: #5E56E7;
+    --text-color: #333333;
+    --background-color: #F8F7FF;
+  }
+
+body {
+    font-family: 'MontserratRegular';
+    font-size: 16px;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+.headings {
+    color : var(--primary-color);
+}

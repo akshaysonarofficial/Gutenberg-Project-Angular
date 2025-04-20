@@ -1,0 +1,38 @@
+<div class="container py-4">
+    <!-- Back & Heading -->
+    <div class="d-flex align-items-center mb-4">
+        <img src="assets/icons/Back.svg" alt="Back" class="mr-2" style="width: 20px; cursor: pointer;"
+            (click)="goBack()" />
+        <h3 class="mb-0 font-weight-bold headings">{{this.category | titleCase}}</h3>
+    </div>
+
+    <!-- Search Box -->
+    <div class="input-group mb-4 inputBorder">
+        <div class="input-group-prepend">
+            <span class="input-group-text inputStyle border-right-0">
+                <i class="fa fa-search text-muted"></i>
+            </span>
+        </div>
+        <input type="text" class="form-control border-left-0 no-focus inputStyle" placeholder="Search"
+            [(ngModel)]="searchText" (change)="filteredBooks()" [disabled]="isLoading" />
+        <i *ngIf="searchText" class="fa fa-times text-muted position-absolute" (click)="clearInput()"
+            style="top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;"></i>
+    </div>
+
+    <!-- Books Grid -->
+    <div class="row">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4" *ngFor="let book of this.books">
+            <div class="book-card" (click)="openBook(book)">
+                <img [src]="book.formats && book.formats['image/jpeg']" alt="Book Cover" class="book-image" />
+                <h6 class="book-title">{{ book.title | slice:0:28 }}{{ book.title.length > 28 ? '...' : '' }}</h6>
+                <p class="book-author">{{ book.authors && book.authors[0] && book.authors[0].name }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="isLoading" class="spinner-overlay">
+    <div class="spinner-border headings" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div (window:scroll)="onScroll()" class="d-none"></div>
